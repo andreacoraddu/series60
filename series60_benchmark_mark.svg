@@ -3,16 +3,16 @@
   <desc id="desc">Stylized marine hydrodynamics emblem with hull lines and benchmark wave forms.</desc>
   <defs>
     <linearGradient id="bg" x1="24" y1="16" x2="220" y2="240" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#184f7b"/>
-      <stop offset="1" stop-color="#0b2840"/>
+      <stop offset="0" stop-color="#0c2c43"/>
+      <stop offset="1" stop-color="#081521"/>
     </linearGradient>
-    <linearGradient id="gold" x1="54" y1="172" x2="202" y2="172" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#f4d58d"/>
-      <stop offset="1" stop-color="#d8a441"/>
+    <linearGradient id="cyan" x1="54" y1="172" x2="202" y2="172" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#baf0fb"/>
+      <stop offset="1" stop-color="#00a6d6"/>
     </linearGradient>
     <linearGradient id="steel" x1="52" y1="130" x2="204" y2="130" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#f8fbff"/>
-      <stop offset="1" stop-color="#bfd4e6"/>
+      <stop offset="0" stop-color="#f8feff"/>
+      <stop offset="1" stop-color="#88dff5"/>
     </linearGradient>
   </defs>
 
@@ -33,13 +33,13 @@
 
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M52 133C78 104 101 90 128 90C155 90 178 104 204 133" stroke="url(#steel)" stroke-width="8"/>
-    <path d="M60 144C86 120 106 109 128 109C150 109 170 120 196 144" stroke="#e9f2fb" stroke-width="4"/>
-    <path d="M58 174C79 186 102 193 128 193C154 193 177 186 198 174" stroke="url(#gold)" stroke-width="8"/>
-    <path d="M76 74C86 99 91 123 91 148" stroke="#d9ebf9" stroke-width="3" opacity="0.9"/>
-    <path d="M180 74C170 99 165 123 165 148" stroke="#d9ebf9" stroke-width="3" opacity="0.9"/>
-    <path d="M98 64C111 95 117 122 117 155" stroke="#9ec5e4" stroke-width="2.5" opacity="0.85"/>
-    <path d="M158 64C145 95 139 122 139 155" stroke="#9ec5e4" stroke-width="2.5" opacity="0.85"/>
+    <path d="M60 144C86 120 106 109 128 109C150 109 170 120 196 144" stroke="#eafcff" stroke-width="4"/>
+    <path d="M58 174C79 186 102 193 128 193C154 193 177 186 198 174" stroke="url(#cyan)" stroke-width="8"/>
+    <path d="M76 74C86 99 91 123 91 148" stroke="#d8f8ff" stroke-width="3" opacity="0.9"/>
+    <path d="M180 74C170 99 165 123 165 148" stroke="#d8f8ff" stroke-width="3" opacity="0.9"/>
+    <path d="M98 64C111 95 117 122 117 155" stroke="#7fdaf0" stroke-width="2.5" opacity="0.85"/>
+    <path d="M158 64C145 95 139 122 139 155" stroke="#7fdaf0" stroke-width="2.5" opacity="0.85"/>
   </g>
 
-  <circle cx="128" cy="128" r="94" fill="none" stroke="#f4d58d" stroke-opacity="0.55" stroke-width="2.5"/>
+  <circle cx="128" cy="128" r="94" fill="none" stroke="#72d7ef" stroke-opacity="0.55" stroke-width="2.5"/>
 </svg>

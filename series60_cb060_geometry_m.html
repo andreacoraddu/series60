@@ -7,9 +7,7 @@
 <meta name="description" content="Academic benchmark atlas for the Series 60 CB=0.60 parent hull, combining 2D geometry, 3D hull views, and experimental self-propulsion data.">
 <link rel="icon" type="image/svg+xml" href="series60_benchmark_mark.svg">
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@500;700&family=STIX+Two+Text:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/computer-modern@0.1.2/index.min.css">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <script>
@@ -8744,31 +8742,33 @@ const hullMesh = {
 </script>
 <style>
   :root{
-    --bg:#06131f;
-    --bg-soft:#0d2235;
-    --paper:#f4efe6;
-    --paper-2:#fbf7f1;
-    --ink:#0f2437;
-    --muted:#5f7082;
-    --line:rgba(17,55,85,.12);
-    --primary:#0f3859;
-    --primary-deep:#08263d;
-    --accent:#c99732;
-    --accent-soft:#f0cf87;
-    --foam:#87c9da;
-    --card-shadow:0 24px 56px rgba(2,11,19,.18);
-    --radius:24px;
+    --font-serif:'CMU Serif','STIX Two Text',serif;
+    --font-sans:'CMU Sans Serif','Helvetica Neue',Arial,sans-serif;
+    --bg:#081521;
+    --bg-soft:#0d2434;
+    --paper:#f6fbfd;
+    --paper-2:#ffffff;
+    --ink:#0b1f33;
+    --muted:#506476;
+    --line:rgba(7,37,60,.1);
+    --primary:#00a6d6;
+    --primary-deep:#06263b;
+    --accent:#00a6d6;
+    --accent-soft:#93e2f6;
+    --foam:#4cc1e2;
+    --card-shadow:0 22px 54px rgba(3,15,25,.14);
+    --radius:22px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;font-size:15px}
   body{
-    font-family:'STIX Two Text',serif;
+    font-family:var(--font-serif);
     color:var(--ink);
     background:
-      radial-gradient(circle at 20% 0%, rgba(135,201,218,.18), transparent 26%),
-      radial-gradient(circle at 80% 18%, rgba(201,151,50,.12), transparent 20%),
-      linear-gradient(180deg, var(--bg) 0%, #0d2233 28%, #dce6ea 28%, #eef1ee 100%);
-    line-height:1.5;
+      radial-gradient(circle at 18% 0%, rgba(0,166,214,.22), transparent 24%),
+      radial-gradient(circle at 82% 16%, rgba(147,226,246,.12), transparent 18%),
+      linear-gradient(180deg, var(--bg) 0%, #0d2030 29%, #e5f3f8 29%, #f6fbfd 100%);
+    line-height:1.45;
     min-height:100vh;
     overflow-x:hidden;
   }
@@ -8780,15 +8780,15 @@ const hullMesh = {
     background:
       linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
       linear-gradient(0deg, rgba(255,255,255,.035) 1px, transparent 1px);
-    background-size:72px 72px;
+    background-size:64px 64px;
     mask-image:linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.36) 32%, transparent 78%);
-    opacity:.42;
+    opacity:.34;
   }
   a{color:inherit}
   .hero{
     position:relative;
     color:#f7fbff;
-    padding:34px 24px 118px;
+    padding:28px 24px 104px;
     overflow:hidden;
   }
   .hero::before,
@@ -8805,7 +8805,7 @@ const hullMesh = {
     top:-260px;
     border-radius:50%;
     background:
-      radial-gradient(circle, rgba(135,201,218,.14) 0 18%, transparent 18% 22%, rgba(135,201,218,.08) 22% 24%, transparent 24% 100%);
+      radial-gradient(circle, rgba(0,166,214,.16) 0 18%, transparent 18% 22%, rgba(147,226,246,.08) 22% 24%, transparent 24% 100%);
     border:1px solid rgba(255,255,255,.08);
     opacity:.9;
     animation:drift 18s ease-in-out infinite;
@@ -8817,7 +8817,7 @@ const hullMesh = {
     height:180px;
     background:
       linear-gradient(180deg, rgba(6,19,31,0) 0%, rgba(6,19,31,.08) 30%, rgba(6,19,31,.24) 100%),
-      radial-gradient(120% 140% at 50% 100%, rgba(240,207,135,.22), transparent 50%);
+      radial-gradient(120% 140% at 50% 100%, rgba(76,193,226,.18), transparent 50%);
     border-bottom:1px solid rgba(255,255,255,.08);
   }
   .hero-grid{
@@ -8829,28 +8829,28 @@ const hullMesh = {
     gap:24px;
   }
   .hero-copy h1{
-    font-family:'Fraunces',serif;
-    font-size:clamp(3.4rem,8vw,7rem);
-    line-height:.9;
-    letter-spacing:-.04em;
+    font-family:var(--font-serif);
+    font-size:clamp(2.8rem,6.5vw,5.4rem);
+    line-height:.92;
+    letter-spacing:-.03em;
     max-width:8ch;
   }
-  .hero-copy p{max-width:68ch;font-size:1.03rem;color:rgba(247,251,255,.82);margin-top:12px}
+  .hero-copy p{max-width:68ch;font-size:.97rem;color:rgba(247,251,255,.82);margin-top:12px}
   .hero-brand{
     display:grid;
     grid-template-columns:auto minmax(0,1fr);
-    gap:20px;
+    gap:18px;
     align-items:start;
-    margin-bottom:14px;
+    margin-bottom:12px;
   }
   .hero-mark{
-    width:104px;
-    height:104px;
-    padding:12px;
-    border-radius:28px;
-    background:linear-gradient(180deg, rgba(17,54,83,.7), rgba(9,31,49,.88));
-    border:1px solid rgba(255,255,255,.11);
-    box-shadow:0 18px 34px rgba(0,0,0,.28);
+    width:96px;
+    height:96px;
+    padding:10px;
+    border-radius:24px;
+    background:linear-gradient(180deg, rgba(12,34,50,.86), rgba(8,23,35,.94));
+    border:1px solid rgba(147,226,246,.18);
+    box-shadow:0 18px 34px rgba(0,0,0,.24);
     filter:drop-shadow(0 10px 22px rgba(7,20,34,.22));
   }
   .eyebrow{
@@ -8859,10 +8859,10 @@ const hullMesh = {
     gap:8px;
     letter-spacing:.14em;
     text-transform:uppercase;
-    font-size:.76rem;
-    font-family:'Space Grotesk',sans-serif;
+    font-size:.68rem;
+    font-family:var(--font-sans);
     color:var(--accent-soft);
-    margin-bottom:12px;
+    margin-bottom:10px;
   }
   .eyebrow::before{
     content:'';
@@ -8871,24 +8871,24 @@ const hullMesh = {
     background:currentColor;
   }
   .hero-subtitle{
-    margin-top:10px;
+    margin-top:8px;
     display:inline-flex;
     align-items:center;
     gap:10px;
-    font-family:'Space Grotesk',sans-serif;
+    font-family:var(--font-sans);
     color:rgba(255,255,255,.88);
     text-transform:uppercase;
     letter-spacing:.16em;
-    font-size:.88rem;
+    font-size:.8rem;
   }
   .hero-subtitle::before{
     content:'';
     width:42px;
     height:2px;
-    background:linear-gradient(90deg, var(--accent), rgba(240,207,135,0));
+    background:linear-gradient(90deg, var(--accent), rgba(76,193,226,0));
   }
   .hero-lead{
-    font-size:1.08rem;
+    font-size:1rem;
     max-width:60ch;
   }
   .hero-facts{
@@ -8901,13 +8901,13 @@ const hullMesh = {
     display:inline-flex;
     align-items:center;
     gap:8px;
-    padding:10px 14px;
+    padding:8px 12px;
     border-radius:999px;
     border:1px solid rgba(255,255,255,.12);
     background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
     color:#fff;
-    font-family:'Space Grotesk',sans-serif;
-    font-size:.88rem;
+    font-family:var(--font-sans);
+    font-size:.79rem;
     backdrop-filter:blur(8px);
   }
   .hero-chip::before{
@@ -8916,7 +8916,7 @@ const hullMesh = {
     height:8px;
     border-radius:50%;
     background:var(--accent);
-    box-shadow:0 0 0 5px rgba(201,151,50,.12);
+    box-shadow:0 0 0 5px rgba(0,166,214,.14);
   }
   .hero-side{
     display:grid;
@@ -8924,10 +8924,10 @@ const hullMesh = {
     justify-items:stretch;
   }
   .hero-panel{
-    background:linear-gradient(180deg, rgba(8,30,47,.78), rgba(5,20,31,.92));
+    background:linear-gradient(180deg, rgba(8,28,43,.8), rgba(4,18,28,.94));
     border:1px solid rgba(255,255,255,.1);
     border-radius:26px;
-    padding:18px;
+    padding:16px;
     box-shadow:0 22px 34px rgba(0,0,0,.28);
     position:relative;
     overflow:hidden;
@@ -8942,40 +8942,40 @@ const hullMesh = {
   .badge{
     display:inline-flex;
     align-items:center;
-    font-family:'Space Grotesk',sans-serif;
+    font-family:var(--font-sans);
     text-transform:uppercase;
     letter-spacing:.12em;
     color:var(--accent-soft);
-    font-size:.75rem;
-    margin-bottom:12px;
+    font-size:.68rem;
+    margin-bottom:10px;
   }
-  .badge-copy{max-width:30ch;font-size:.95rem;color:rgba(247,251,255,.8)}
+  .badge-copy{max-width:30ch;font-size:.88rem;color:rgba(247,251,255,.8)}
   .hero-panel-grid{
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:14px;
-    margin-top:16px;
+    gap:12px;
+    margin-top:14px;
   }
   .hero-panel-grid div{
-    padding:12px;
+    padding:11px;
     border-radius:18px;
     background:rgba(255,255,255,.04);
     border:1px solid rgba(255,255,255,.08);
   }
   .hero-panel-grid span{
     display:block;
-    font-family:'Space Grotesk',sans-serif;
+    font-family:var(--font-sans);
     text-transform:uppercase;
     letter-spacing:.12em;
-    font-size:.7rem;
+    font-size:.64rem;
     color:rgba(255,255,255,.58);
   }
   .hero-panel-grid strong{
     display:block;
-    margin-top:6px;
+    margin-top:5px;
     color:#fff;
-    font-family:'Fraunces',serif;
-    font-size:1.02rem;
+    font-family:var(--font-serif);
+    font-size:.96rem;
   }
   .pill-nav{
     display:flex;
@@ -8985,35 +8985,35 @@ const hullMesh = {
   }
   .pill-nav a{
     text-decoration:none;
-    padding:11px 15px;
+    padding:9px 13px;
     border-radius:999px;
     background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
     border:1px solid rgba(255,255,255,.15);
     color:#fff;
-    font-family:'Space Grotesk',sans-serif;
-    font-size:.9rem;
+    font-family:var(--font-sans);
+    font-size:.8rem;
     transition:transform .24s ease, border-color .24s ease, background .24s ease;
   }
   .pill-nav a:hover{
     transform:translateY(-1px);
-    border-color:rgba(240,207,135,.4);
-    background:linear-gradient(180deg, rgba(240,207,135,.16), rgba(255,255,255,.04));
+    border-color:rgba(0,166,214,.4);
+    background:linear-gradient(180deg, rgba(0,166,214,.18), rgba(255,255,255,.04));
   }
   main{
     width:min(1380px, calc(100% - 32px));
-    margin:-70px auto 32px;
+    margin:-64px auto 28px;
     display:grid;
-    gap:24px;
+    gap:20px;
     position:relative;
     z-index:2;
   }
   .card{
     position:relative;
-    background:linear-gradient(180deg, rgba(251,247,241,.97), rgba(244,239,230,.96));
+    background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(246,251,253,.97));
     border:1px solid rgba(255,255,255,.78);
     border-radius:var(--radius);
     box-shadow:var(--card-shadow);
-    padding:24px;
+    padding:22px;
     overflow:hidden;
   }
   .card::before{
@@ -9022,7 +9022,7 @@ const hullMesh = {
     inset:0;
     pointer-events:none;
     background:
-      radial-gradient(circle at top right, rgba(201,151,50,.08), transparent 26%),
+      radial-gradient(circle at top right, rgba(0,166,214,.1), transparent 26%),
       linear-gradient(90deg, transparent, rgba(8,38,61,.02), transparent);
   }
   .card::after{
@@ -9030,25 +9030,25 @@ const hullMesh = {
     position:absolute;
     inset:0 0 auto 0;
     height:4px;
-    background:linear-gradient(90deg, var(--accent), rgba(135,201,218,.95), transparent 78%);
+    background:linear-gradient(90deg, var(--accent), rgba(76,193,226,.92), transparent 78%);
   }
   .section-heading{
     display:grid;
-    gap:12px;
-    margin-bottom:20px;
+    gap:10px;
+    margin-bottom:18px;
   }
   .section-heading h2{
-    font-family:'Fraunces',serif;
-    font-size:clamp(1.55rem,3.3vw,2.4rem);
-    line-height:1;
+    font-family:var(--font-serif);
+    font-size:clamp(1.35rem,2.5vw,1.95rem);
+    line-height:1.05;
     color:var(--primary-deep);
   }
-  .section-intro{color:var(--muted);max-width:72ch}
+  .section-intro{color:var(--muted);max-width:72ch;font-size:.95rem}
   .section-kicker{
     letter-spacing:.12em;
     text-transform:uppercase;
-    font-size:.72rem;
-    font-family:'Space Grotesk',sans-serif;
+    font-size:.66rem;
+    font-family:var(--font-sans);
     color:#6d7f91;
     margin-bottom:4px;
   }
@@ -9068,19 +9068,19 @@ const hullMesh = {
   .plot-grid{
     display:grid;
     gap:16px;
-    margin-top:18px;
+    margin-top:16px;
   }
   .plot-card{
-    background:linear-gradient(180deg, rgba(255,252,248,.96), rgba(245,240,231,.98));
+    background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(244,251,253,.98));
     border:1px solid rgba(17,55,85,.1);
     border-radius:20px;
-    padding:18px;
+    padding:16px;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
   }
   .plot-card-feature{
     background:
-      radial-gradient(circle at top right, rgba(135,201,218,.18), transparent 26%),
-      linear-gradient(135deg, #071a2a 0%, #0d2438 55%, #13334e 100%);
+      radial-gradient(circle at top right, rgba(147,226,246,.16), transparent 26%),
+      linear-gradient(135deg, #071523 0%, #0b2234 55%, #12354d 100%);
     border:1px solid rgba(255,255,255,.08);
     box-shadow:0 28px 60px rgba(3,12,21,.24);
   }
@@ -9090,8 +9090,8 @@ const hullMesh = {
     color:#f6fbff;
   }
   .plot-card h3{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:1rem;
+    font-family:var(--font-sans);
+    font-size:.9rem;
     text-transform:uppercase;
     letter-spacing:.08em;
     color:var(--primary);
@@ -9101,10 +9101,10 @@ const hullMesh = {
     display:inline-flex;
     align-items:center;
     gap:10px;
-    font-family:'Space Grotesk',sans-serif;
+    font-family:var(--font-sans);
     text-transform:uppercase;
     letter-spacing:.14em;
-    font-size:.72rem;
+    font-size:.66rem;
     color:#7d8ea0;
     margin-bottom:10px;
   }
@@ -9112,34 +9112,34 @@ const hullMesh = {
     content:'';
     width:28px;
     height:2px;
-    background:linear-gradient(90deg, var(--accent), rgba(135,201,218,.9));
+    background:linear-gradient(90deg, var(--accent), rgba(76,193,226,.9));
   }
-  .plot-copy{color:var(--muted);font-size:.92rem;margin-bottom:12px}
+  .plot-copy{color:var(--muted);font-size:.87rem;margin-bottom:12px}
   .plot-shell{
     border-radius:24px;
-    padding:14px;
+    padding:12px;
     background:linear-gradient(180deg, rgba(255,255,255,.52), rgba(255,255,255,.18));
     border:1px solid rgba(17,55,85,.08);
   }
   .plot-shell-dark{
     background:
-      radial-gradient(circle at 15% 20%, rgba(135,201,218,.12), transparent 20%),
-      radial-gradient(circle at 85% 0%, rgba(201,151,50,.16), transparent 28%),
+      radial-gradient(circle at 15% 20%, rgba(0,166,214,.14), transparent 20%),
+      radial-gradient(circle at 85% 0%, rgba(147,226,246,.14), transparent 28%),
       linear-gradient(180deg, rgba(6,19,31,.96), rgba(12,35,54,.94));
     border:1px solid rgba(255,255,255,.08);
     box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
   }
-  .validation-panel{min-height:360px}
-  #chart{min-height:680px}
-  #chart3d{min-height:460px}
-  #surface3d{min-height:760px}
-  #body-plan-chart,#waterlines-chart,#profile-chart,#exp-chart,#exp-rpm-chart{min-height:360px}
+  .validation-panel{min-height:340px}
+  #chart{min-height:620px}
+  #chart3d{min-height:420px}
+  #surface3d{min-height:700px}
+  #body-plan-chart,#waterlines-chart,#profile-chart,#exp-chart,#exp-rpm-chart{min-height:340px}
   .kv{
     position:relative;
-    background:linear-gradient(180deg, rgba(255,255,255,.76), rgba(245,240,231,.94));
+    background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(243,250,253,.96));
     border:1px solid rgba(17,55,85,.1);
     border-radius:18px;
-    padding:14px 15px;
+    padding:12px 14px;
     overflow:hidden;
   }
   .kv::before{
@@ -9149,28 +9149,28 @@ const hullMesh = {
     top:0;
     bottom:0;
     width:4px;
-    background:linear-gradient(180deg, var(--accent), rgba(135,201,218,.95));
+    background:linear-gradient(180deg, var(--accent), rgba(76,193,226,.95));
   }
   .kv span{
     display:block;
-    font-size:.72rem;
+    font-size:.66rem;
     color:#607286;
     text-transform:uppercase;
     letter-spacing:.06em;
-    font-family:'Space Grotesk',sans-serif;
+    font-family:var(--font-sans);
   }
   .kv strong{
     display:block;
-    font-size:1.08rem;
+    font-size:1rem;
     color:var(--primary-deep);
-    margin-top:6px;
+    margin-top:5px;
   }
   footer{
     text-align:center;
-    font-size:.82rem;
+    font-size:.75rem;
     color:rgba(255,255,255,.68);
     padding:0 16px 34px;
-    font-family:'Space Grotesk',sans-serif;
+    font-family:var(--font-sans);
   }
   @keyframes drift{
     0%,100%{transform:translate3d(0,0,0)}
@@ -9178,7 +9178,7 @@ const hullMesh = {
   }
   @media(min-width:960px){
     .hero{
-      padding:40px 32px 132px;
+      padding:32px 32px 120px;
     }
     .hero-grid{
       grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr);
@@ -9198,15 +9198,15 @@ const hullMesh = {
   @media(max-width:700px){
     main{width:min(100% - 20px, 1380px)}
     main{margin:-54px auto 26px}
-    .card{padding:18px}
-    #chart{min-height:560px}
+    .card{padding:16px}
+    #chart{min-height:520px}
     .hero-brand{
       grid-template-columns:1fr;
       justify-items:start;
     }
     .hero-mark{
-      width:84px;
-      height:84px;
+      width:76px;
+      height:76px;
     }
     .hero-copy h1{max-width:6ch}
     .hero-panel-grid{grid-template-columns:1fr 1fr}
@@ -11285,10 +11285,83 @@ function normalizeTraceAxes(trace) {
   return normalized;
 }
 
+const PLOT_FONT_FAMILY = "'CMU Serif', 'STIX Two Text', serif";
+const UI_FONT_FAMILY = "'CMU Sans Serif', 'Helvetica Neue', Arial, sans-serif";
+const AXIS_TEXT_COLOR = '#0b1f33';
+const GRID_COLOR = 'rgba(6,38,60,.12)';
+const ZEROLINE_COLOR = 'rgba(6,38,60,.2)';
+const PLOT_BACKGROUND = '#f7fbfd';
+const WATERLINE_COLOR_MAP = {
+  'WL 0.075H': '#b7eef9',
+  'WL 0.25H': '#7fdaf0',
+  'WL 0.50H': '#3ebfdf',
+  'WL 0.75H': '#00a6d6',
+  'WL 1.00H (DWL)': '#06263b'
+};
+const CLEAN_PLOT_CONFIG = {
+  responsive: true,
+  displayModeBar: 'hover',
+  displaylogo: false,
+  modeBarButtonsToRemove: ['select2d', 'lasso2d', 'autoScale2d', 'toggleSpikelines']
+};
+
+function themedAxis(titleText, extra = {}) {
+  return {
+    title: { text: titleText, font: { family: PLOT_FONT_FAMILY, size: 13, color: AXIS_TEXT_COLOR } },
+    tickfont: { family: PLOT_FONT_FAMILY, size: 11, color: AXIS_TEXT_COLOR },
+    gridcolor: GRID_COLOR,
+    zerolinecolor: ZEROLINE_COLOR,
+    linecolor: 'rgba(6,38,60,.18)',
+    ...extra
+  };
+}
+
+function themeGeometryTrace(trace) {
+  const themed = cloneTrace(trace);
+  themed.line = { ...(themed.line || {}) };
+  if (themed.marker) {
+    themed.marker = { ...themed.marker };
+  }
+
+  const name = themed.name || '';
+  let color = themed.line.color || '#06263b';
+
+  if (themed.xaxis === 'x1') {
+    const isForeBody = ['FP', 'St1', 'St2', 'St3', 'St4', 'St5', 'St6'].includes(name);
+    const isMidship = name === 'St7(midship)';
+    color = isForeBody ? '#00a6d6' : (isMidship ? '#1a7ea2' : '#06263b');
+    themed.line.width = isMidship ? 1.9 : 1.65;
+  } else if (themed.xaxis === 'x2') {
+    color = WATERLINE_COLOR_MAP[name] || '#00a6d6';
+    themed.line.width = name === 'WL 1.00H (DWL)' ? 2.8 : 2.15;
+  } else if (themed.xaxis === 'x3') {
+    if (name === 'Sheer line') {
+      color = '#00a6d6';
+      themed.line.width = 2.5;
+    } else if (name === 'Keel') {
+      color = '#06263b';
+      themed.line.width = 2.1;
+    } else {
+      color = 'rgba(11,31,51,.18)';
+      themed.line.width = 1.05;
+    }
+  }
+
+  themed.line.color = color;
+  if (themed.marker) {
+    themed.marker.color = color;
+    if (!themed.marker.size) {
+      themed.marker.size = 3;
+    }
+  }
+  return themed;
+}
+
 function plotCardLayout(overrides = {}) {
   return {
-    font: { family: "'STIX Two Text', serif", size: 13, color: '#122033' },
-    plot_bgcolor: '#f8fbfd',
+    font: { family: PLOT_FONT_FAMILY, size: 12, color: AXIS_TEXT_COLOR },
+    hoverlabel: { font: { family: PLOT_FONT_FAMILY, size: 11 }, bgcolor: '#ffffff' },
+    plot_bgcolor: PLOT_BACKGROUND,
     paper_bgcolor: 'rgba(0,0,0,0)',
     margin: { t: 20, l: 56, r: 20, b: 48 },
     ...overrides
@@ -11329,8 +11402,8 @@ function renderExperimentalResults() {
     header: {
       values: ['<b>Speed (kn)</b>', '<b>EHP</b>', '<b>RPM</b>', '<b>SHP</b>'],
       align: 'center',
-      fill: { color: '#f1f5f9' },
-      font: { family: "'STIX Two Text', serif", size: 12, color: '#1e293b' }
+      fill: { color: '#e2f5fb' },
+      font: { family: PLOT_FONT_FAMILY, size: 11, color: AXIS_TEXT_COLOR }
     },
     cells: {
       values: [
@@ -11340,8 +11413,8 @@ function renderExperimentalResults() {
         shp.map(v => numberFormat.format(v))
       ],
       align: 'center',
-      fill: { color: ['#ffffff', '#f9fafb', '#ffffff', '#f9fafb'] },
-      font: { family: "'STIX Two Text', serif", size: 11, color: '#1e293b' }
+      fill: { color: ['#ffffff', '#f6fbfd', '#ffffff', '#f6fbfd'] },
+      font: { family: PLOT_FONT_FAMILY, size: 10, color: AXIS_TEXT_COLOR }
     }
   }], {
     margin: { t: 20, l: 20, r: 20, b: 20 },
@@ -11350,9 +11423,9 @@ function renderExperimentalResults() {
   }, { responsive: true, displayModeBar: false });
 
   const expLayout = plotCardLayout({
-    xaxis: { title: 'Speed (kn)', zeroline: true },
-    yaxis: { title: 'Power (hp)', zeroline: true },
-    legend: { orientation: 'h', y: -0.2, x: 0.5, xanchor: 'center' },
+    xaxis: themedAxis('Speed (kn)', { zeroline: true }),
+    yaxis: themedAxis('Power (hp)', { zeroline: true }),
+    legend: { orientation: 'h', y: -0.2, x: 0.5, xanchor: 'center', font: { family: PLOT_FONT_FAMILY, size: 10 } },
     margin: { t: 20, l: 60, r: 24, b: 56 }
   });
 
@@ -11363,8 +11436,8 @@ function renderExperimentalResults() {
       type: 'scatter',
       mode: 'lines+markers',
       name: 'EHP',
-      line: { color: '#1f77b4', width: 3 },
-      marker: { size: 6 }
+      line: { color: '#00a6d6', width: 3 },
+      marker: { size: 6, color: '#00a6d6' }
     },
     {
       x: speeds,
@@ -11372,10 +11445,10 @@ function renderExperimentalResults() {
       type: 'scatter',
       mode: 'lines+markers',
       name: 'SHP',
-      line: { color: '#ff7f0e', width: 3 },
-      marker: { size: 6 }
+      line: { color: '#06263b', width: 3 },
+      marker: { size: 6, color: '#06263b' }
     }
-  ], expLayout, { responsive: true, displayModeBar: true });
+  ], expLayout, CLEAN_PLOT_CONFIG);
 
   Plotly.newPlot('exp-rpm-chart', [{
     x: speeds,
@@ -11383,49 +11456,50 @@ function renderExperimentalResults() {
     type: 'scatter',
     mode: 'lines+markers',
     name: 'RPM',
-    line: { color: '#0f766e', width: 3 },
-    marker: { size: 6, color: '#0f766e' }
+    line: { color: '#1a7ea2', width: 3 },
+    marker: { size: 6, color: '#1a7ea2' }
   }], plotCardLayout({
-    xaxis: { title: 'Speed (kn)', zeroline: true },
-    yaxis: { title: 'RPM', zeroline: true },
+    xaxis: themedAxis('Speed (kn)', { zeroline: true }),
+    yaxis: themedAxis('RPM', { zeroline: true }),
     showlegend: false,
     margin: { t: 20, l: 60, r: 24, b: 56 }
-  }), { responsive: true, displayModeBar: true });
+  }), CLEAN_PLOT_CONFIG);
 }
 
 setModelParticulars();
 setExperimentalHighlights();
 renderExperimentalResults();
+const themedData = data.map(themeGeometryTrace);
 function renderGeometryPanels() {
-  const bodyPlanTraces = data
+  const bodyPlanTraces = themedData
     .filter(trace => trace.xaxis === 'x1' && trace.type === 'scatter')
     .map(trace => ({ ...normalizeTraceAxes(trace), showlegend: false }));
-  const waterlinePlanTraces = data
+  const waterlinePlanTraces = themedData
     .filter(trace => trace.xaxis === 'x2' && trace.name && trace.name.startsWith('WL '))
     .map(trace => normalizeTraceAxes(trace));
-  const profileTraces = data
+  const profileTraces = themedData
     .filter(trace => trace.xaxis === 'x3')
     .map(trace => normalizeTraceAxes(trace));
 
   Plotly.newPlot('body-plan-chart', bodyPlanTraces, plotCardLayout({
-    xaxis: { title: 'Half-breadth y (m)', zeroline: true, zerolinecolor: '#b9c4d1' },
-    yaxis: { title: 'Draft z (m)', scaleanchor: 'x', scaleratio: 1 },
+    xaxis: themedAxis('Half-breadth y (m)', { zeroline: true, zerolinecolor: ZEROLINE_COLOR }),
+    yaxis: themedAxis('Draft z (m)', { scaleanchor: 'x', scaleratio: 1 }),
     showlegend: false
-  }), { responsive: true, displayModeBar: true });
+  }), CLEAN_PLOT_CONFIG);
 
   Plotly.newPlot('waterlines-chart', waterlinePlanTraces, plotCardLayout({
-    xaxis: { title: 'x from FP (m)' },
-    yaxis: { title: 'Half-breadth y (m)', scaleanchor: 'x', scaleratio: 1 },
-    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center', font: { size: 10 } },
+    xaxis: themedAxis('x from FP (m)'),
+    yaxis: themedAxis('Half-breadth y (m)', { scaleanchor: 'x', scaleratio: 1 }),
+    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center', font: { family: PLOT_FONT_FAMILY, size: 9 } },
     margin: { t: 20, l: 56, r: 20, b: 76 }
-  }), { responsive: true, displayModeBar: true });
+  }), CLEAN_PLOT_CONFIG);
 
   Plotly.newPlot('profile-chart', profileTraces, plotCardLayout({
-    xaxis: { title: 'x from FP (m)' },
-    yaxis: { title: 'Height z (m)' },
-    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center', font: { size: 10 } },
+    xaxis: themedAxis('x from FP (m)'),
+    yaxis: themedAxis('Height z (m)'),
+    legend: { orientation: 'h', y: -0.18, x: 0.5, xanchor: 'center', font: { family: PLOT_FONT_FAMILY, size: 9 } },
     margin: { t: 20, l: 56, r: 20, b: 76 }
-  }), { responsive: true, displayModeBar: true });
+  }), CLEAN_PLOT_CONFIG);
 }
 
 renderGeometryPanels();
@@ -11436,7 +11510,7 @@ const waterlineZ = {
   'WL 0.75H': 0.75 * 6.5,
   'WL 1.00H (DWL)': 1.00 * 6.5
 };
-const waterlineTraces = data.filter(trace => trace.name && trace.name.startsWith('WL '));
+const waterlineTraces = themedData.filter(trace => trace.name && trace.name.startsWith('WL '));
 const data3d = [];
 const meshPoints = { x: [], y: [], z: [] };
 const meshI = [];
@@ -11458,7 +11532,7 @@ waterlineTraces.forEach((trace, row) => {
     x: xPts,
     y: yPts,
     z: zPts,
-    line: { width: 3 },
+    line: { width: 3, color: trace.line && trace.line.color },
     name: trace.name,
     opacity: 0.9,
     hoverinfo: 'name',
@@ -11506,7 +11580,7 @@ if (meshPoints.x.length > 0) {
     j: mirroredLoftMesh.j,
     k: mirroredLoftMesh.k,
     opacity: 0.22,
-    color: '#76bfd2',
+    color: '#45bedf',
     flatshading: true,
     lighting: { ambient: 0.75, diffuse: 0.9, specular: 0.42, roughness: 0.7, fresnel: 0.28 },
     lightposition: { x: 130, y: 140, z: 120 },
@@ -11527,28 +11601,50 @@ data3d.forEach(trace => {
     });
   }
 });
-const layout = {"title": {"text": "Series 60 Parent Hull \u2014 CB = 0.60 (Model 4210W, LBP=121.92 m)<br><sup>Todd, DTMB Report 1712, 1963 \u00b7 Reconstructed from Tables of Offsets (converted to meters)</sup>", "x": 0.5, "font": {"size": 16}}, "height": 900, "grid": {"rows": 3, "columns": 1, "pattern": "independent", "roworder": "top to bottom"}, "xaxis1": {"title": "Half-breadth y (m)", "zeroline": true, "zerolinecolor": "#aaa", "domain": [0, 1], "anchor": "y1"}, "yaxis1": {"title": "Draft z (m)", "domain": [0.68, 1.0], "scaleanchor": "x1", "scaleratio": 1}, "xaxis2": {"title": "x from FP (m)", "domain": [0, 1], "anchor": "y2"}, "yaxis2": {"title": "Half-breadth y (m)", "domain": [0.35, 0.63], "scaleanchor": "x2", "scaleratio": 1}, "xaxis3": {"title": "x from FP (m)", "domain": [0, 1], "anchor": "y3"}, "yaxis3": {"title": "Height z (m)", "domain": [0.0, 0.28]}, "legend": {"x": 1.01, "y": 1, "font": {"size": 10}}, "plot_bgcolor": "#f9f9f9", "paper_bgcolor": "#ffffff", "margin": {"l": 60, "r": 200, "t": 80, "b": 40}, "annotations": [{"text": "<b>Body Plan</b> (blue=forebody, red=aftbody)", "x": 0.5, "y": 1.02, "xref": "paper", "yref": "paper", "showarrow": false, "font": {"size": 12}}, {"text": "<b>Waterlines Plan</b> (Half-breadth)", "x": 0.5, "y": 0.65, "xref": "paper", "yref": "paper", "showarrow": false, "font": {"size": 12}}, {"text": "<b>Profile</b>", "x": 0.5, "y": 0.3, "xref": "paper", "yref": "paper", "showarrow": false, "font": {"size": 12}}]};
-Plotly.newPlot('chart', data, layout, {responsive:true, displayModeBar:true});
+const layout = {
+  title: {
+    text: "Series 60 parent hull — C<sub>B</sub> = 0.60 (Model 4210W, L<sub>BP</sub> = 121.92 m)<br><sup>Todd, DTMB Report 1712, 1963 · reconstructed from tables of offsets</sup>",
+    x: 0.5,
+    font: { family: PLOT_FONT_FAMILY, size: 15, color: AXIS_TEXT_COLOR }
+  },
+  font: { family: PLOT_FONT_FAMILY, size: 12, color: AXIS_TEXT_COLOR },
+  height: 860,
+  grid: { rows: 3, columns: 1, pattern: 'independent', roworder: 'top to bottom' },
+  xaxis1: themedAxis('Half-breadth y (m)', { zeroline: true, domain: [0, 1], anchor: 'y1' }),
+  yaxis1: themedAxis('Draft z (m)', { domain: [0.68, 1.0], scaleanchor: 'x1', scaleratio: 1 }),
+  xaxis2: themedAxis('x from FP (m)', { domain: [0, 1], anchor: 'y2' }),
+  yaxis2: themedAxis('Half-breadth y (m)', { domain: [0.35, 0.63], scaleanchor: 'x2', scaleratio: 1 }),
+  xaxis3: themedAxis('x from FP (m)', { domain: [0, 1], anchor: 'y3' }),
+  yaxis3: themedAxis('Height z (m)', { domain: [0.0, 0.28] }),
+  legend: { x: 1.01, y: 1, font: { family: PLOT_FONT_FAMILY, size: 9, color: AXIS_TEXT_COLOR } },
+  plot_bgcolor: PLOT_BACKGROUND,
+  paper_bgcolor: 'rgba(0,0,0,0)',
+  margin: { l: 60, r: 192, t: 72, b: 36 },
+  annotations: [
+    { text: "<b>Body plan</b> (cyan = forebody, navy = aftbody)", x: 0.5, y: 1.02, xref: 'paper', yref: 'paper', showarrow: false, font: { family: PLOT_FONT_FAMILY, size: 11, color: AXIS_TEXT_COLOR } },
+    { text: "<b>Waterlines plan</b> (half-breadth)", x: 0.5, y: 0.65, xref: 'paper', yref: 'paper', showarrow: false, font: { family: PLOT_FONT_FAMILY, size: 11, color: AXIS_TEXT_COLOR } },
+    { text: "<b>Profile</b>", x: 0.5, y: 0.3, xref: 'paper', yref: 'paper', showarrow: false, font: { family: PLOT_FONT_FAMILY, size: 11, color: AXIS_TEXT_COLOR } }
+  ]
+};
+Plotly.newPlot('chart', themedData, layout, CLEAN_PLOT_CONFIG);
 const maritime3DConfig = {
-  responsive: true,
-  displayModeBar: 'hover',
-  displaylogo: false,
+  ...CLEAN_PLOT_CONFIG,
   modeBarButtonsToRemove: ['zoom3d', 'pan3d', 'hoverClosest3d', 'resetCameraLastSave3d', 'toggleSpikelines']
 };
 const designWaterline = waterlineTraces.find(trace => trace.name === 'WL 1.00H (DWL)');
 const layout3d = {
-  font: { family: "'Space Grotesk', sans-serif", size: 13, color: '#0f2437' },
-  height: 460,
+  font: { family: PLOT_FONT_FAMILY, size: 12, color: AXIS_TEXT_COLOR },
+  height: 420,
   scene: {
-    xaxis: { title: { text: 'x from FP (m)' }, gridcolor: 'rgba(12,43,68,.12)', zerolinecolor: 'rgba(12,43,68,.2)', showbackground: true, backgroundcolor: 'rgba(255,255,255,.18)' },
-    yaxis: { title: { text: 'y (m)' }, gridcolor: 'rgba(12,43,68,.12)', zerolinecolor: 'rgba(12,43,68,.2)', showbackground: true, backgroundcolor: 'rgba(255,255,255,.12)' },
-    zaxis: { title: { text: 'z (m)' }, gridcolor: 'rgba(12,43,68,.12)', zerolinecolor: 'rgba(12,43,68,.2)', showbackground: true, backgroundcolor: 'rgba(255,255,255,.18)' },
+    xaxis: { title: { text: 'x from FP (m)' }, gridcolor: GRID_COLOR, zerolinecolor: ZEROLINE_COLOR, showbackground: true, backgroundcolor: 'rgba(255,255,255,.18)', color: AXIS_TEXT_COLOR },
+    yaxis: { title: { text: 'y (m)' }, gridcolor: GRID_COLOR, zerolinecolor: ZEROLINE_COLOR, showbackground: true, backgroundcolor: 'rgba(255,255,255,.12)', color: AXIS_TEXT_COLOR },
+    zaxis: { title: { text: 'z (m)' }, gridcolor: GRID_COLOR, zerolinecolor: ZEROLINE_COLOR, showbackground: true, backgroundcolor: 'rgba(255,255,255,.18)', color: AXIS_TEXT_COLOR },
     aspectmode: 'manual',
     aspectratio: { x: 2.1, y: 1.05, z: 0.52 },
     camera: { eye: { x: -1.55, y: -1.85, z: 0.82 }, center: { x: 0.02, y: 0, z: -0.05 } },
     bgcolor: 'rgba(0,0,0,0)'
   },
-  legend: { orientation: 'h', y: 1.02, x: 0.5, xanchor: 'center', font: { family: "'Space Grotesk', sans-serif", size: 10 } },
+  legend: { orientation: 'h', y: 1.02, x: 0.5, xanchor: 'center', font: { family: PLOT_FONT_FAMILY, size: 9, color: AXIS_TEXT_COLOR } },
   margin: { l: 0, r: 0, t: 8, b: 0 },
   paper_bgcolor: 'rgba(0,0,0,0)'
 };
@@ -11566,11 +11662,11 @@ const surfaceTraces = [{
   opacity: 0.98,
   intensity: fullHullMesh.x,
   colorscale: [
-    [0.0, '#0a2236'],
-    [0.22, '#114c6e'],
-    [0.5, '#1d7e93'],
-    [0.78, '#76c7bf'],
-    [1.0, '#f0cf87']
+    [0.0, '#071523'],
+    [0.22, '#0a2a40'],
+    [0.5, '#0f5e7f'],
+    [0.78, '#00a6d6'],
+    [1.0, '#dff7ff']
   ],
   flatshading: false,
   lighting: { ambient: 0.72, diffuse: 0.95, specular: 0.55, roughness: 0.55, fresnel: 0.3 },
@@ -11592,7 +11688,7 @@ if (designWaterline) {
     x: dwlX,
     y: dwlY,
     z: dwlZ,
-    line: { color: '#f0cf87', width: 7 },
+    line: { color: '#baf0fb', width: 6 },
     hoverinfo: 'skip',
     showlegend: false
   });
@@ -11602,14 +11698,14 @@ if (designWaterline) {
     x: dwlX,
     y: dwlY.map(value => -value),
     z: dwlZ,
-    line: { color: '#f0cf87', width: 7 },
+    line: { color: '#baf0fb', width: 6 },
     hoverinfo: 'skip',
     showlegend: false
   });
 }
 const surfaceLayout = {
-  font: { family: "'Space Grotesk', sans-serif", size: 13, color: '#e9f4fb' },
-  height: 760,
+  font: { family: PLOT_FONT_FAMILY, size: 12, color: '#e9f4fb' },
+  height: 700,
   scene: {
     xaxis: { title: { text: 'x from FP (m)' }, gridcolor: 'rgba(255,255,255,.08)', zerolinecolor: 'rgba(255,255,255,.18)', showbackground: true, backgroundcolor: 'rgba(255,255,255,.02)', color: '#dcebf6' },
     yaxis: { title: { text: 'y (m)' }, gridcolor: 'rgba(255,255,255,.08)', zerolinecolor: 'rgba(255,255,255,.18)', showbackground: true, backgroundcolor: 'rgba(255,255,255,.03)', color: '#dcebf6' },
