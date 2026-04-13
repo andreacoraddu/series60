@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="series60_benchmark_mark.svg" width="144" alt="Series 60 CB=0.60 Benchmark Atlas mark">
+  <img src="series60_benchmark_mark.svg" width="144" alt="Series 60 CB=0.60 mark">
 </p>
 
-# Series 60 CB = 0.60 Benchmark Atlas
+# Series 60 CB = 0.60
 
 ## Abstract
 
@@ -67,7 +67,7 @@ One RPM entry at **14 kn** appears in the scanned table as `609`, which is not p
 
 The GitHub Pages deployment for this repository is available at:
 
-**https://andreacoraddu.github.io/series60-cb060-benchmark-atlas/**
+**https://andreacoraddu.github.io/series60-cb060/**
 
 ## Intended Uses
 
@@ -89,7 +89,7 @@ This atlas may be useful for:
 
 If you wish to cite this repository, a reasonable software-style citation would be:
 
-> Coraddu, A. *Series 60 CB = 0.60 Benchmark Atlas*. GitHub repository and GitHub Pages site, 2026. Available at: https://github.com/andreacoraddu/series60-cb060-benchmark-atlas
+> Coraddu, A. *Series 60 CB = 0.60*. GitHub repository and GitHub Pages site, 2026. Available at: https://github.com/andreacoraddu/series60-cb060
 
 ## License and Use
 
