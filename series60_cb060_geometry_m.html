@@ -9077,6 +9077,18 @@ const hullMesh = {
     padding:18px;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
   }
+  .plot-card-feature{
+    background:
+      radial-gradient(circle at top right, rgba(135,201,218,.18), transparent 26%),
+      linear-gradient(135deg, #071a2a 0%, #0d2438 55%, #13334e 100%);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 28px 60px rgba(3,12,21,.24);
+  }
+  .plot-card-feature h3,
+  .plot-card-feature .plot-copy,
+  .plot-card-feature .plot-topline{
+    color:#f6fbff;
+  }
   .plot-card h3{
     font-family:'Space Grotesk',sans-serif;
     font-size:1rem;
@@ -9085,10 +9097,42 @@ const hullMesh = {
     color:var(--primary);
     margin-bottom:6px;
   }
+  .plot-topline{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Grotesk',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:.72rem;
+    color:#7d8ea0;
+    margin-bottom:10px;
+  }
+  .plot-topline::before{
+    content:'';
+    width:28px;
+    height:2px;
+    background:linear-gradient(90deg, var(--accent), rgba(135,201,218,.9));
+  }
   .plot-copy{color:var(--muted);font-size:.92rem;margin-bottom:12px}
+  .plot-shell{
+    border-radius:24px;
+    padding:14px;
+    background:linear-gradient(180deg, rgba(255,255,255,.52), rgba(255,255,255,.18));
+    border:1px solid rgba(17,55,85,.08);
+  }
+  .plot-shell-dark{
+    background:
+      radial-gradient(circle at 15% 20%, rgba(135,201,218,.12), transparent 20%),
+      radial-gradient(circle at 85% 0%, rgba(201,151,50,.16), transparent 28%),
+      linear-gradient(180deg, rgba(6,19,31,.96), rgba(12,35,54,.94));
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  }
   .validation-panel{min-height:360px}
   #chart{min-height:680px}
-  #chart3d,#surface3d{min-height:560px}
+  #chart3d{min-height:460px}
+  #surface3d{min-height:760px}
   #body-plan-chart,#waterlines-chart,#profile-chart,#exp-chart,#exp-rpm-chart{min-height:360px}
   .kv{
     position:relative;
@@ -9309,18 +9353,24 @@ const hullMesh = {
         <p class="section-kicker">3D hull</p>
         <h2>Waterline loft and surface mesh</h2>
       </div>
-      <p class="section-intro">Two 3D views are included: one reconstructed from the waterlines for quick inspection, and one direct hull surface mesh for a fuller shape check in GitHub-hosted browsers.</p>
+      <p class="section-intro">The 3D gallery is staged as an immersive hull presentation: a mirrored full-hull surface for visual impact, followed by a lofted waterline reconstruction for checking the underlying geometry.</p>
     </div>
-    <div class="plot-grid plot-grid-two">
-      <div class="plot-card">
-        <h3>Waterline loft</h3>
-        <p class="plot-copy">A light lofted mesh through the design waterlines, useful for checking the reconstructed offsets.</p>
-        <div id="chart3d"></div>
+    <div class="plot-stack">
+      <div class="plot-card plot-card-feature">
+        <p class="plot-topline">Signature view</p>
+        <h3>Full hull surface</h3>
+        <p class="plot-copy">Port and starboard sides are mirrored into a complete hull view, with a highlighted design-waterline outline and a camera angle chosen to read more like a presentation model than a raw mesh export.</p>
+        <div class="plot-shell plot-shell-dark">
+          <div id="surface3d"></div>
+        </div>
       </div>
       <div class="plot-card">
-        <h3>Hull surface mesh</h3>
-        <p class="plot-copy">The full triangular surface mesh with color shading by elevation.</p>
-        <div id="surface3d"></div>
+        <p class="plot-topline">Geometry check</p>
+        <h3>Waterline loft</h3>
+        <p class="plot-copy">A lofted reconstruction through the waterlines, shown as a full hull to make fairness and symmetry easier to read.</p>
+        <div class="plot-shell">
+          <div id="chart3d"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -11216,6 +11266,18 @@ function cloneTrace(trace) {
   return JSON.parse(JSON.stringify(trace));
 }
 
+function mirrorMeshData(mesh) {
+  const offset = mesh.x.length;
+  return {
+    x: mesh.x.concat(mesh.x),
+    y: mesh.y.concat(mesh.y.map(value => -value)),
+    z: mesh.z.concat(mesh.z),
+    i: mesh.i.concat(mesh.i.map(index => index + offset)),
+    j: mesh.j.concat(mesh.k.map(index => index + offset)),
+    k: mesh.k.concat(mesh.j.map(index => index + offset))
+  };
+}
+
 function normalizeTraceAxes(trace) {
   const normalized = cloneTrace(trace);
   delete normalized.xaxis;
@@ -11427,80 +11489,140 @@ for (let r = 0; r < rows - 1; r += 1) {
   }
 }
 if (meshPoints.x.length > 0) {
-  data3d.unshift({
-    type: 'mesh3d',
+  const mirroredLoftMesh = mirrorMeshData({
     x: meshPoints.x,
     y: meshPoints.y,
     z: meshPoints.z,
     i: meshI,
     j: meshJ,
-    k: meshK,
-    opacity: 0.35,
-    color: 'royalblue',
+    k: meshK
+  });
+  data3d.unshift({
+    type: 'mesh3d',
+    x: mirroredLoftMesh.x,
+    y: mirroredLoftMesh.y,
+    z: mirroredLoftMesh.z,
+    i: mirroredLoftMesh.i,
+    j: mirroredLoftMesh.j,
+    k: mirroredLoftMesh.k,
+    opacity: 0.22,
+    color: '#76bfd2',
     flatshading: true,
-    lighting: { ambient: 0.6, diffuse: 0.8, specular: 0.3, roughness: 0.9, fresnel: 0.2 },
-    lightposition: { x: 100, y: 200, z: 0 },
-    name: 'Hull surface',
+    lighting: { ambient: 0.75, diffuse: 0.9, specular: 0.42, roughness: 0.7, fresnel: 0.28 },
+    lightposition: { x: 130, y: 140, z: 120 },
+    name: 'Loft surface',
     showlegend: false,
     showscale: false
   });
 }
+const fullWaterlineTraces = [];
+data3d.forEach(trace => {
+  fullWaterlineTraces.push(trace);
+  if (trace.type === 'scatter3d' && Array.isArray(trace.y)) {
+    fullWaterlineTraces.push({
+      ...trace,
+      y: trace.y.map(value => -value),
+      showlegend: false,
+      hoverinfo: 'skip'
+    });
+  }
+});
 const layout = {"title": {"text": "Series 60 Parent Hull \u2014 CB = 0.60 (Model 4210W, LBP=121.92 m)<br><sup>Todd, DTMB Report 1712, 1963 \u00b7 Reconstructed from Tables of Offsets (converted to meters)</sup>", "x": 0.5, "font": {"size": 16}}, "height": 900, "grid": {"rows": 3, "columns": 1, "pattern": "independent", "roworder": "top to bottom"}, "xaxis1": {"title": "Half-breadth y (m)", "zeroline": true, "zerolinecolor": "#aaa", "domain": [0, 1], "anchor": "y1"}, "yaxis1": {"title": "Draft z (m)", "domain": [0.68, 1.0], "scaleanchor": "x1", "scaleratio": 1}, "xaxis2": {"title": "x from FP (m)", "domain": [0, 1], "anchor": "y2"}, "yaxis2": {"title": "Half-breadth y (m)", "domain": [0.35, 0.63], "scaleanchor": "x2", "scaleratio": 1}, "xaxis3": {"title": "x from FP (m)", "domain": [0, 1], "anchor": "y3"}, "yaxis3": {"title": "Height z (m)", "domain": [0.0, 0.28]}, "legend": {"x": 1.01, "y": 1, "font": {"size": 10}}, "plot_bgcolor": "#f9f9f9", "paper_bgcolor": "#ffffff", "margin": {"l": 60, "r": 200, "t": 80, "b": 40}, "annotations": [{"text": "<b>Body Plan</b> (blue=forebody, red=aftbody)", "x": 0.5, "y": 1.02, "xref": "paper", "yref": "paper", "showarrow": false, "font": {"size": 12}}, {"text": "<b>Waterlines Plan</b> (Half-breadth)", "x": 0.5, "y": 0.65, "xref": "paper", "yref": "paper", "showarrow": false, "font": {"size": 12}}, {"text": "<b>Profile</b>", "x": 0.5, "y": 0.3, "xref": "paper", "yref": "paper", "showarrow": false, "font": {"size": 12}}]};
 Plotly.newPlot('chart', data, layout, {responsive:true, displayModeBar:true});
+const maritime3DConfig = {
+  responsive: true,
+  displayModeBar: 'hover',
+  displaylogo: false,
+  modeBarButtonsToRemove: ['zoom3d', 'pan3d', 'hoverClosest3d', 'resetCameraLastSave3d', 'toggleSpikelines']
+};
+const designWaterline = waterlineTraces.find(trace => trace.name === 'WL 1.00H (DWL)');
 const layout3d = {
-  title: { text: '3D Waterline View — Series 60 CB=0.60', x: 0.5, font: { family: "'STIX Two Text', serif", size: 16 } },
-  font: { family: "'STIX Two Text', serif", size: 13 },
-  height: 560,
+  font: { family: "'Space Grotesk', sans-serif", size: 13, color: '#0f2437' },
+  height: 460,
   scene: {
-    xaxis: { title: { text: 'x_{FP} (m)' }, gridcolor: '#eaeaea' },
-    yaxis: { title: { text: 'y (m)' }, gridcolor: '#eaeaea' },
-    zaxis: { title: { text: 'z (m)' }, gridcolor: '#eaeaea' },
+    xaxis: { title: { text: 'x from FP (m)' }, gridcolor: 'rgba(12,43,68,.12)', zerolinecolor: 'rgba(12,43,68,.2)', showbackground: true, backgroundcolor: 'rgba(255,255,255,.18)' },
+    yaxis: { title: { text: 'y (m)' }, gridcolor: 'rgba(12,43,68,.12)', zerolinecolor: 'rgba(12,43,68,.2)', showbackground: true, backgroundcolor: 'rgba(255,255,255,.12)' },
+    zaxis: { title: { text: 'z (m)' }, gridcolor: 'rgba(12,43,68,.12)', zerolinecolor: 'rgba(12,43,68,.2)', showbackground: true, backgroundcolor: 'rgba(255,255,255,.18)' },
     aspectmode: 'manual',
-    aspectratio: { x: 1.4, y: 0.8, z: 0.35 },
-    camera: { eye: { x: 1.8, y: 1.5, z: 0.8 } },
-    bgcolor: '#f9f9f9'
+    aspectratio: { x: 2.1, y: 1.05, z: 0.52 },
+    camera: { eye: { x: -1.55, y: -1.85, z: 0.82 }, center: { x: 0.02, y: 0, z: -0.05 } },
+    bgcolor: 'rgba(0,0,0,0)'
   },
-  legend: { x: 0.85, y: 0.9, font: { family: "'STIX Two Text', serif", size: 10 } },
-  margin: { l: 60, r: 200, t: 80, b: 40 },
-  paper_bgcolor: '#ffffff'
+  legend: { orientation: 'h', y: 1.02, x: 0.5, xanchor: 'center', font: { family: "'Space Grotesk', sans-serif", size: 10 } },
+  margin: { l: 0, r: 0, t: 8, b: 0 },
+  paper_bgcolor: 'rgba(0,0,0,0)'
 };
-Plotly.newPlot('chart3d', data3d, layout3d, {responsive:true, displayModeBar:true});
+Plotly.newPlot('chart3d', fullWaterlineTraces, layout3d, maritime3DConfig);
 
-const surfaceLayout = {
-  title: { text: '3D Hull Surface — Series 60 CB=0.60', x: 0.5, font: { family: "'STIX Two Text', serif", size: 16 } },
-  font: { family: "'STIX Two Text', serif", size: 13 },
-  height: 560,
-  scene: {
-    xaxis: { title: { text: 'x_{FP} (m)' }, gridcolor: '#eaeaea' },
-    yaxis: { title: { text: 'y (m)' }, gridcolor: '#eaeaea' },
-    zaxis: { title: { text: 'z (m)' }, gridcolor: '#eaeaea' },
-    aspectmode: 'manual',
-    aspectratio: { x: 1.6, y: 0.7, z: 0.35 },
-    camera: { eye: { x: 1.8, y: 1.4, z: 0.7 } },
-    bgcolor: '#f9f9f9'
-  },
-  legend: { x: 0.8, y: 0.9, font: { family: "'STIX Two Text', serif", size: 10 } },
-  margin: { l: 60, r: 200, t: 80, b: 40 },
-  paper_bgcolor: '#ffffff'
-};
-
-Plotly.newPlot('surface3d', [{
+const fullHullMesh = mirrorMeshData(hullMesh);
+const surfaceTraces = [{
   type: 'mesh3d',
-  x: hullMesh.x,
-  y: hullMesh.y,
-  z: hullMesh.z,
-  i: hullMesh.i,
-  j: hullMesh.j,
-  k: hullMesh.k,
-  opacity: 0.7,
-  intensity: hullMesh.z,
-  colorscale: 'Viridis',
-  flatshading: true,
-  lighting: { ambient: 0.6, diffuse: 0.8, specular: 0.2, roughness: 0.9, fresnel: 0.1 },
-  lightposition: { x: 100, y: 200, z: 100 },
+  x: fullHullMesh.x,
+  y: fullHullMesh.y,
+  z: fullHullMesh.z,
+  i: fullHullMesh.i,
+  j: fullHullMesh.j,
+  k: fullHullMesh.k,
+  opacity: 0.98,
+  intensity: fullHullMesh.x,
+  colorscale: [
+    [0.0, '#0a2236'],
+    [0.22, '#114c6e'],
+    [0.5, '#1d7e93'],
+    [0.78, '#76c7bf'],
+    [1.0, '#f0cf87']
+  ],
+  flatshading: false,
+  lighting: { ambient: 0.72, diffuse: 0.95, specular: 0.55, roughness: 0.55, fresnel: 0.3 },
+  lightposition: { x: 160, y: -120, z: 220 },
   name: 'Hull surface',
   showscale: false
-}], surfaceLayout, {responsive:true, displayModeBar:true});
+}];
+if (designWaterline) {
+  const dwlX = designWaterline.x.slice();
+  const dwlY = designWaterline.y.slice();
+  if (dwlX.length > 1 && dwlX[0] === dwlX[dwlX.length - 1] && dwlY[0] === dwlY[dwlY.length - 1]) {
+    dwlX.pop();
+    dwlY.pop();
+  }
+  const dwlZ = dwlX.map(() => waterlineZ['WL 1.00H (DWL)']);
+  surfaceTraces.push({
+    type: 'scatter3d',
+    mode: 'lines',
+    x: dwlX,
+    y: dwlY,
+    z: dwlZ,
+    line: { color: '#f0cf87', width: 7 },
+    hoverinfo: 'skip',
+    showlegend: false
+  });
+  surfaceTraces.push({
+    type: 'scatter3d',
+    mode: 'lines',
+    x: dwlX,
+    y: dwlY.map(value => -value),
+    z: dwlZ,
+    line: { color: '#f0cf87', width: 7 },
+    hoverinfo: 'skip',
+    showlegend: false
+  });
+}
+const surfaceLayout = {
+  font: { family: "'Space Grotesk', sans-serif", size: 13, color: '#e9f4fb' },
+  height: 760,
+  scene: {
+    xaxis: { title: { text: 'x from FP (m)' }, gridcolor: 'rgba(255,255,255,.08)', zerolinecolor: 'rgba(255,255,255,.18)', showbackground: true, backgroundcolor: 'rgba(255,255,255,.02)', color: '#dcebf6' },
+    yaxis: { title: { text: 'y (m)' }, gridcolor: 'rgba(255,255,255,.08)', zerolinecolor: 'rgba(255,255,255,.18)', showbackground: true, backgroundcolor: 'rgba(255,255,255,.03)', color: '#dcebf6' },
+    zaxis: { title: { text: 'z (m)' }, gridcolor: 'rgba(255,255,255,.08)', zerolinecolor: 'rgba(255,255,255,.18)', showbackground: true, backgroundcolor: 'rgba(255,255,255,.02)', color: '#dcebf6' },
+    aspectmode: 'manual',
+    aspectratio: { x: 2.55, y: 1.22, z: 0.62 },
+    camera: { eye: { x: -1.9, y: -2.18, z: 0.92 }, center: { x: 0.03, y: 0, z: -0.06 } },
+    bgcolor: 'rgba(0,0,0,0)'
+  },
+  margin: { l: 0, r: 0, t: 8, b: 0 },
+  paper_bgcolor: 'rgba(0,0,0,0)'
+};
+Plotly.newPlot('surface3d', surfaceTraces, surfaceLayout, maritime3DConfig);
 </script>
 </body>
 </html>
