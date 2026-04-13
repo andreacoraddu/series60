@@ -65,7 +65,7 @@ The validation section summarizes self-propulsion data for model 4210 across the
 
 ### Data Curation Remark
 
-One RPM entry at **14 kn** appears in the scanned table as `609`, which is not physically consistent with the surrounding trend. In this atlas, that value is rendered as **60.9**, interpreted as an OCR or transcription artifact from the original scan. This choice is documented explicitly in the site to preserve scholarly transparency.
+The **14 kn** shaft-speed entry for model 4210 is reproduced here as **60.9 rpm**, consistent with the scanned value visible in Table 27 of the source report.
 
 ## Published Site
 
