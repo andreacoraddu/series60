@@ -2,7 +2,11 @@
   <img src="series60_benchmark_mark.svg" width="144" alt="Series 60 CB=0.60 mark">
 </p>
 
-# Series 60 CB = 0.60
+# Series 60
+
+## Scope
+
+This repository currently documents the **Series 60 parent hull with block coefficient CB = 0.60** through a static GitHub Pages site.
 
 ## Abstract
 
@@ -67,7 +71,7 @@ One RPM entry at **14 kn** appears in the scanned table as `609`, which is not p
 
 The GitHub Pages deployment for this repository is available at:
 
-**https://andreacoraddu.github.io/series60-cb060/**
+**https://andreacoraddu.github.io/series60/**
 
 ## Intended Uses
 
@@ -89,7 +93,7 @@ This atlas may be useful for:
 
 If you wish to cite this repository, a reasonable software-style citation would be:
 
-> Coraddu, A. *Series 60 CB = 0.60*. GitHub repository and GitHub Pages site, 2026. Available at: https://github.com/andreacoraddu/series60-cb060
+> Coraddu, A. *Series 60*. GitHub repository and GitHub Pages site, 2026. Available at: https://github.com/andreacoraddu/series60
 
 ## License and Use
 

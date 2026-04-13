@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Series 60 CB=0.60</title>
+<title>Series 60</title>
 <meta name="description" content="Academic benchmark atlas for the Series 60 CB=0.60 parent hull, combining 2D geometry, 3D hull views, and experimental self-propulsion data.">
 <link rel="icon" type="image/svg+xml" href="series60_benchmark_mark.svg">
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@500;700&family=STIX+Two+Text:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <script>
@@ -8744,15 +8744,20 @@ const hullMesh = {
 </script>
 <style>
   :root{
-    --bg:#edf3f8;
-    --paper:#ffffff;
-    --ink:#122033;
-    --muted:#516173;
-    --line:#d7e1eb;
-    --primary:#0f3d63;
-    --accent:#d97706;
-    --card-shadow:0 18px 40px rgba(15,61,99,.08);
-    --radius:20px;
+    --bg:#06131f;
+    --bg-soft:#0d2235;
+    --paper:#f4efe6;
+    --paper-2:#fbf7f1;
+    --ink:#0f2437;
+    --muted:#5f7082;
+    --line:rgba(17,55,85,.12);
+    --primary:#0f3859;
+    --primary-deep:#08263d;
+    --accent:#c99732;
+    --accent-soft:#f0cf87;
+    --foam:#87c9da;
+    --card-shadow:0 24px 56px rgba(2,11,19,.18);
+    --radius:24px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -8760,31 +8765,93 @@ const hullMesh = {
     font-family:'STIX Two Text',serif;
     color:var(--ink);
     background:
-      radial-gradient(circle at top left, rgba(138,191,221,.35), transparent 30%),
-      linear-gradient(180deg, #f5f9fc 0%, var(--bg) 100%);
+      radial-gradient(circle at 20% 0%, rgba(135,201,218,.18), transparent 26%),
+      radial-gradient(circle at 80% 18%, rgba(201,151,50,.12), transparent 20%),
+      linear-gradient(180deg, var(--bg) 0%, #0d2233 28%, #dce6ea 28%, #eef1ee 100%);
     line-height:1.5;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size:72px 72px;
+    mask-image:linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.36) 32%, transparent 78%);
+    opacity:.42;
   }
   a{color:inherit}
   .hero{
-    background:linear-gradient(135deg, rgba(15,61,99,.98), rgba(27,87,135,.92));
-    color:#fff;
-    padding:32px 24px 28px;
-    display:grid;
-    gap:20px;
+    position:relative;
+    color:#f7fbff;
+    padding:34px 24px 118px;
+    overflow:hidden;
   }
-  .hero-copy h1{font-size:clamp(2rem,4vw,3.3rem);line-height:1.04;max-width:12ch}
-  .hero-copy p{max-width:70ch;font-size:1.02rem;color:rgba(255,255,255,.84);margin-top:12px}
+  .hero::before,
+  .hero::after{
+    content:'';
+    position:absolute;
+    inset:auto;
+    pointer-events:none;
+  }
+  .hero::before{
+    width:720px;
+    height:720px;
+    right:-220px;
+    top:-260px;
+    border-radius:50%;
+    background:
+      radial-gradient(circle, rgba(135,201,218,.14) 0 18%, transparent 18% 22%, rgba(135,201,218,.08) 22% 24%, transparent 24% 100%);
+    border:1px solid rgba(255,255,255,.08);
+    opacity:.9;
+    animation:drift 18s ease-in-out infinite;
+  }
+  .hero::after{
+    left:0;
+    right:0;
+    bottom:0;
+    height:180px;
+    background:
+      linear-gradient(180deg, rgba(6,19,31,0) 0%, rgba(6,19,31,.08) 30%, rgba(6,19,31,.24) 100%),
+      radial-gradient(120% 140% at 50% 100%, rgba(240,207,135,.22), transparent 50%);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .hero-grid{
+    position:relative;
+    z-index:1;
+    width:min(1380px, 100%);
+    margin:0 auto;
+    display:grid;
+    gap:24px;
+  }
+  .hero-copy h1{
+    font-family:'Fraunces',serif;
+    font-size:clamp(3.4rem,8vw,7rem);
+    line-height:.9;
+    letter-spacing:-.04em;
+    max-width:8ch;
+  }
+  .hero-copy p{max-width:68ch;font-size:1.03rem;color:rgba(247,251,255,.82);margin-top:12px}
   .hero-brand{
     display:grid;
-    grid-template-columns:auto 1fr;
-    gap:18px;
-    align-items:center;
-    margin-bottom:8px;
+    grid-template-columns:auto minmax(0,1fr);
+    gap:20px;
+    align-items:start;
+    margin-bottom:14px;
   }
   .hero-mark{
-    width:92px;
-    height:92px;
-    filter:drop-shadow(0 10px 22px rgba(7,20,34,.28));
+    width:104px;
+    height:104px;
+    padding:12px;
+    border-radius:28px;
+    background:linear-gradient(180deg, rgba(17,54,83,.7), rgba(9,31,49,.88));
+    border:1px solid rgba(255,255,255,.11);
+    box-shadow:0 18px 34px rgba(0,0,0,.28);
+    filter:drop-shadow(0 10px 22px rgba(7,20,34,.22));
   }
   .eyebrow{
     display:inline-flex;
@@ -8792,76 +8859,197 @@ const hullMesh = {
     gap:8px;
     letter-spacing:.14em;
     text-transform:uppercase;
-    font-size:.72rem;
-    color:#8cc9f6;
-    margin-bottom:10px;
+    font-size:.76rem;
+    font-family:'Space Grotesk',sans-serif;
+    color:var(--accent-soft);
+    margin-bottom:12px;
   }
   .eyebrow::before{
     content:'';
-    width:24px;
-    height:1px;
+    width:28px;
+    height:2px;
     background:currentColor;
+  }
+  .hero-subtitle{
+    margin-top:10px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Grotesk',sans-serif;
+    color:rgba(255,255,255,.88);
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-size:.88rem;
+  }
+  .hero-subtitle::before{
+    content:'';
+    width:42px;
+    height:2px;
+    background:linear-gradient(90deg, var(--accent), rgba(240,207,135,0));
+  }
+  .hero-lead{
+    font-size:1.08rem;
+    max-width:60ch;
+  }
+  .hero-facts{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:18px;
+  }
+  .hero-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 14px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.12);
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    color:#fff;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:.88rem;
+    backdrop-filter:blur(8px);
+  }
+  .hero-chip::before{
+    content:'';
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 5px rgba(201,151,50,.12);
   }
   .hero-side{
     display:grid;
     align-content:start;
-    gap:10px;
-    justify-items:start;
+    justify-items:stretch;
+  }
+  .hero-panel{
+    background:linear-gradient(180deg, rgba(8,30,47,.78), rgba(5,20,31,.92));
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:26px;
+    padding:18px;
+    box-shadow:0 22px 34px rgba(0,0,0,.28);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-panel::before{
+    content:'';
+    position:absolute;
+    inset:0 0 auto 0;
+    height:3px;
+    background:linear-gradient(90deg, var(--accent), var(--foam), transparent 75%);
   }
   .badge{
     display:inline-flex;
     align-items:center;
-    gap:10px;
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:999px;
-    padding:8px 14px;
-    font-size:.82rem;
-    white-space:nowrap;
-    backdrop-filter:blur(8px);
+    font-family:'Space Grotesk',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--accent-soft);
+    font-size:.75rem;
+    margin-bottom:12px;
   }
-  .badge-copy{max-width:28ch;font-size:.92rem;color:rgba(255,255,255,.76)}
+  .badge-copy{max-width:30ch;font-size:.95rem;color:rgba(247,251,255,.8)}
+  .hero-panel-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+    margin-top:16px;
+  }
+  .hero-panel-grid div{
+    padding:12px;
+    border-radius:18px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .hero-panel-grid span{
+    display:block;
+    font-family:'Space Grotesk',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:.7rem;
+    color:rgba(255,255,255,.58);
+  }
+  .hero-panel-grid strong{
+    display:block;
+    margin-top:6px;
+    color:#fff;
+    font-family:'Fraunces',serif;
+    font-size:1.02rem;
+  }
   .pill-nav{
     display:flex;
     flex-wrap:wrap;
     gap:10px;
-    margin-top:18px;
+    margin-top:22px;
   }
   .pill-nav a{
     text-decoration:none;
-    padding:10px 14px;
+    padding:11px 15px;
     border-radius:999px;
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.14);
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.15);
     color:#fff;
+    font-family:'Space Grotesk',sans-serif;
     font-size:.9rem;
+    transition:transform .24s ease, border-color .24s ease, background .24s ease;
+  }
+  .pill-nav a:hover{
+    transform:translateY(-1px);
+    border-color:rgba(240,207,135,.4);
+    background:linear-gradient(180deg, rgba(240,207,135,.16), rgba(255,255,255,.04));
   }
   main{
     width:min(1380px, calc(100% - 32px));
-    margin:24px auto 32px;
+    margin:-70px auto 32px;
     display:grid;
-    gap:20px;
+    gap:24px;
+    position:relative;
+    z-index:2;
   }
   .card{
-    background:rgba(255,255,255,.94);
-    border:1px solid rgba(215,225,235,.9);
+    position:relative;
+    background:linear-gradient(180deg, rgba(251,247,241,.97), rgba(244,239,230,.96));
+    border:1px solid rgba(255,255,255,.78);
     border-radius:var(--radius);
     box-shadow:var(--card-shadow);
-    padding:22px;
+    padding:24px;
     overflow:hidden;
+  }
+  .card::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(circle at top right, rgba(201,151,50,.08), transparent 26%),
+      linear-gradient(90deg, transparent, rgba(8,38,61,.02), transparent);
+  }
+  .card::after{
+    content:'';
+    position:absolute;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg, var(--accent), rgba(135,201,218,.95), transparent 78%);
   }
   .section-heading{
     display:grid;
-    gap:10px;
-    margin-bottom:18px;
+    gap:12px;
+    margin-bottom:20px;
   }
-  .section-heading h2{font-size:1.4rem;line-height:1.1;color:var(--primary)}
+  .section-heading h2{
+    font-family:'Fraunces',serif;
+    font-size:clamp(1.55rem,3.3vw,2.4rem);
+    line-height:1;
+    color:var(--primary-deep);
+  }
   .section-intro{color:var(--muted);max-width:72ch}
   .section-kicker{
     letter-spacing:.12em;
     text-transform:uppercase;
-    font-size:.7rem;
-    color:#5c7ea2;
+    font-size:.72rem;
+    font-family:'Space Grotesk',sans-serif;
+    color:#6d7f91;
     margin-bottom:4px;
   }
   .info-grid,
@@ -8883,13 +9071,17 @@ const hullMesh = {
     margin-top:18px;
   }
   .plot-card{
-    background:#f8fbfd;
-    border:1px solid var(--line);
-    border-radius:18px;
-    padding:16px;
+    background:linear-gradient(180deg, rgba(255,252,248,.96), rgba(245,240,231,.98));
+    border:1px solid rgba(17,55,85,.1);
+    border-radius:20px;
+    padding:18px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
   }
   .plot-card h3{
+    font-family:'Space Grotesk',sans-serif;
     font-size:1rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
     color:var(--primary);
     margin-bottom:6px;
   }
@@ -8899,10 +9091,21 @@ const hullMesh = {
   #chart3d,#surface3d{min-height:560px}
   #body-plan-chart,#waterlines-chart,#profile-chart,#exp-chart,#exp-rpm-chart{min-height:360px}
   .kv{
-    background:linear-gradient(180deg, #f9fcfe 0%, #f3f8fc 100%);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:12px 14px;
+    position:relative;
+    background:linear-gradient(180deg, rgba(255,255,255,.76), rgba(245,240,231,.94));
+    border:1px solid rgba(17,55,85,.1);
+    border-radius:18px;
+    padding:14px 15px;
+    overflow:hidden;
+  }
+  .kv::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:4px;
+    background:linear-gradient(180deg, var(--accent), rgba(135,201,218,.95));
   }
   .kv span{
     display:block;
@@ -8910,24 +9113,32 @@ const hullMesh = {
     color:#607286;
     text-transform:uppercase;
     letter-spacing:.06em;
+    font-family:'Space Grotesk',sans-serif;
   }
   .kv strong{
     display:block;
     font-size:1.08rem;
-    color:var(--primary);
-    margin-top:4px;
+    color:var(--primary-deep);
+    margin-top:6px;
   }
   footer{
     text-align:center;
     font-size:.82rem;
-    color:#607286;
-    padding:0 16px 28px;
+    color:rgba(255,255,255,.68);
+    padding:0 16px 34px;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  @keyframes drift{
+    0%,100%{transform:translate3d(0,0,0)}
+    50%{transform:translate3d(-22px,14px,0)}
   }
   @media(min-width:960px){
     .hero{
-      grid-template-columns:minmax(0,1.4fr) minmax(260px,.6fr);
+      padding:40px 32px 132px;
+    }
+    .hero-grid{
+      grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr);
       align-items:end;
-      padding:38px 32px 32px;
     }
     .validation-grid{
       grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
@@ -8942,6 +9153,7 @@ const hullMesh = {
   }
   @media(max-width:700px){
     main{width:min(100% - 20px, 1380px)}
+    main{margin:-54px auto 26px}
     .card{padding:18px}
     #chart{min-height:560px}
     .hero-brand{
@@ -8949,33 +9161,51 @@ const hullMesh = {
       justify-items:start;
     }
     .hero-mark{
-      width:78px;
-      height:78px;
+      width:84px;
+      height:84px;
     }
+    .hero-copy h1{max-width:6ch}
+    .hero-panel-grid{grid-template-columns:1fr 1fr}
   }
 </style>
 </head>
 <body>
 <header class="hero">
-  <div class="hero-copy">
-    <div class="hero-brand">
-      <img class="hero-mark" src="series60_benchmark_mark.svg" alt="Series 60 benchmark atlas mark">
-      <div>
-        <p class="eyebrow">Static academic atlas for GitHub Pages</p>
-        <h1>Series 60 CB = 0.60</h1>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="hero-brand">
+        <img class="hero-mark" src="series60_benchmark_mark.svg" alt="Series 60 benchmark mark">
+        <div>
+          <p class="eyebrow">Marine benchmark reference</p>
+          <h1>Series 60</h1>
+          <p class="hero-subtitle">CB = 0.60 parent hull</p>
+        </div>
+      </div>
+      <p class="hero-lead">Interactive 2D lines, 3D hull views, and experimental self-propulsion data for the Series 60 parent hull model 4210W, presented with a richer naval-chart visual language for fast technical inspection and sharing.</p>
+      <div class="hero-facts" aria-label="Key descriptors">
+        <span class="hero-chip">Model 4210W</span>
+        <span class="hero-chip">DTMB reference form</span>
+        <span class="hero-chip">2D, 3D, and validation</span>
+      </div>
+      <nav class="pill-nav" aria-label="Page sections">
+        <a href="#overview">Overview</a>
+        <a href="#geometry-2d">2D plots</a>
+        <a href="#validation">Experimental results</a>
+        <a href="#geometry-3d">3D hull</a>
+      </nav>
+    </div>
+    <div class="hero-side">
+      <div class="hero-panel">
+        <div class="badge">What’s inside</div>
+        <p class="badge-copy">A static technical reference that packages reconstructed geometry and published propulsion data into one GitHub-hosted visual document.</p>
+        <div class="hero-panel-grid">
+          <div><span>Geometry</span><strong>2D lines plan</strong></div>
+          <div><span>Surface</span><strong>3D hull mesh</strong></div>
+          <div><span>Validation</span><strong>Tables and curves</strong></div>
+          <div><span>Format</span><strong>Static Pages site</strong></div>
+        </div>
       </div>
     </div>
-    <p>Interactive 2D lines, 3D hull views, and experimental self-propulsion validation for the Series 60 parent hull (model 4210W), organized as a compact scholarly reference site that can be cited, shared, and published directly from a GitHub repository.</p>
-    <nav class="pill-nav" aria-label="Page sections">
-      <a href="#overview">Overview</a>
-      <a href="#geometry-2d">2D plots</a>
-      <a href="#validation">Experimental results</a>
-      <a href="#geometry-3d">3D hull</a>
-    </nav>
-  </div>
-  <div class="hero-side">
-    <div class="badge">Reference repository</div>
-    <p class="badge-copy">All geometry and validation data are embedded in the page, with a static deployment model suitable for archival and teaching workflows.</p>
   </div>
 </header>
 
