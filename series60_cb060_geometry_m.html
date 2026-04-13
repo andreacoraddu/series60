@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Series 60 CB=0.60 — Hull Explorer</title>
+<title>Series 60 CB=0.60 — Benchmark Atlas</title>
+<meta name="description" content="Academic benchmark atlas for the Series 60 CB=0.60 parent hull, combining 2D geometry, 3D hull views, and experimental self-propulsion data.">
+<link rel="icon" type="image/svg+xml" href="series60_benchmark_mark.svg">
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -8772,6 +8774,18 @@ const hullMesh = {
   }
   .hero-copy h1{font-size:clamp(2rem,4vw,3.3rem);line-height:1.04;max-width:12ch}
   .hero-copy p{max-width:70ch;font-size:1.02rem;color:rgba(255,255,255,.84);margin-top:12px}
+  .hero-brand{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:18px;
+    align-items:center;
+    margin-bottom:8px;
+  }
+  .hero-mark{
+    width:92px;
+    height:92px;
+    filter:drop-shadow(0 10px 22px rgba(7,20,34,.28));
+  }
   .eyebrow{
     display:inline-flex;
     align-items:center;
@@ -8939,15 +8953,28 @@ const hullMesh = {
     main{width:min(100% - 20px, 1380px)}
     .card{padding:18px}
     #chart{min-height:560px}
+    .hero-brand{
+      grid-template-columns:1fr;
+      justify-items:start;
+    }
+    .hero-mark{
+      width:78px;
+      height:78px;
+    }
   }
 </style>
 </head>
 <body>
 <header class="hero">
   <div class="hero-copy">
-    <p class="eyebrow">Static viewer for GitHub Pages</p>
-    <h1>Series 60 CB = 0.60 Hull Explorer</h1>
-    <p>Interactive 2D lines, 3D hull views, and experimental self-propulsion validation for the Series 60 parent hull (model 4210W), packaged as a single static page that can be published directly from a GitHub repository.</p>
+    <div class="hero-brand">
+      <img class="hero-mark" src="series60_benchmark_mark.svg" alt="Series 60 benchmark atlas mark">
+      <div>
+        <p class="eyebrow">Static academic atlas for GitHub Pages</p>
+        <h1>Series 60 CB = 0.60 Benchmark Atlas</h1>
+      </div>
+    </div>
+    <p>Interactive 2D lines, 3D hull views, and experimental self-propulsion validation for the Series 60 parent hull (model 4210W), organized as a compact scholarly reference site that can be cited, shared, and published directly from a GitHub repository.</p>
     <nav class="pill-nav" aria-label="Page sections">
       <a href="#overview">Overview</a>
       <a href="#geometry-2d">2D plots</a>
@@ -8956,8 +8983,8 @@ const hullMesh = {
     </nav>
   </div>
   <div class="hero-side">
-    <div class="badge">GitHub Pages ready</div>
-    <p class="badge-copy">All geometry and validation data are embedded in the page, with Plotly loaded from a CDN.</p>
+    <div class="badge">Benchmark repository</div>
+    <p class="badge-copy">All geometry and validation data are embedded in the page, with a static deployment model suitable for archival and teaching workflows.</p>
   </div>
 </header>
 
