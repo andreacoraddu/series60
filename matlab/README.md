@@ -42,8 +42,6 @@ The script automatically adds `src/` to the MATLAB path and writes exports into 
 - `html_reference`
   Rebuilds the hull from the web geometry data stored in `../web/data/series60_cb060_geometry_data.js`.
 
-The current runner uses `legacy_table3` by default.
-
 ## Generated Outputs
 
 Running the script writes:
@@ -61,4 +59,3 @@ Running the script writes:
 
 - The classes are written in an object-oriented style so geometry generation, hydrostatics, and plotting stay separated.
 - The export script is designed around a 1 m reference hull unless you change the `Lpp` parameter in the runner.
-- `legacy/untitled.m` is not part of the active workflow.
